@@ -6,7 +6,7 @@ const YOUTUBE_API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY;
 const MovieSearch = {
     searchMovies: async (query) => {
         try {
-            const response = await axios.get(`http://www.omdbapi.com/?apikey=${OMDB_API_KEY}&s=${query}`);
+            const response = await axios.get(`https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&s=${query}`);
             console.log('got a response!!')
             console.log(response);
             return response.data.Search;
@@ -19,7 +19,7 @@ const MovieSearch = {
 
     getMovieById: async (id) => {
         try {
-            const response = await axios.get(`http://www.omdbapi.com/?apikey=${OMDB_API_KEY}&i=${id}`);
+            const response = await axios.get(`https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&i=${id}`);
             console.log('got a response!!')
             console.log(response);
             return response.data;
