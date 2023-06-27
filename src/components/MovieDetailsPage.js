@@ -9,9 +9,13 @@ const MovieDetailsPage = () => {
     const [trailerId, setTrailerId] = useState('');
 
     const handleWatchNow = async () => {
+        const youtubeVideoId = JSON.parse(localStorage.getItem('youtubeVideoId')) || [];
         try {
             const videoId = await MovieService.fetchTrailer(movieDetails.Title);
             setTrailerId(videoId);
+            if(!youtubeVideoId.includes(videoId)){
+                youtubeVideoId.push(videoId);
+            }
             console.log('fetched youtube video', trailerId)
             console.log(videoId)
         } catch(error){

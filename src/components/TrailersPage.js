@@ -1,28 +1,21 @@
 import { useEffect, useState } from "react";
-import MovieSearch from "./MovieService";
 
 const TrailersPage = () => {
     const [favoriteMovies, setFavoriteMovies] = useState([]);
 
     useEffect(() => {
-        const favorites = localStorage.getItem('favorites');
-        const videoID = [];
-
-        for(let i =0; i < favorites.length; i++){
-            MovieSearch.fetchTrailer(favorites[i].Title).then((res) => videoID.push(res));
-            console.log(videoID);
-        }
-
+        const videoID = JSON.parse(localStorage.getItem('youtubeVideoId')) || [];
         setFavoriteMovies(videoID);
-    }, [favoriteMovies]);
+        console.log(videoID);
+    }, []);
 
     return (
-        <div>
+        <div className="">
             {favoriteMovies.length > 0 ? (
-                <div className="p-4 grid xl:grid-cols-6 lg:grid-cols-4 grid-cols-3 gap-4">
+                <div className="p-4 grid lg:grid-cols-2 grid-cols-1 gap-4">
                     {favoriteMovies.map((movie) => (
                         <iframe
-                            title='video'
+                            title={movie}
                             src={`https://www.youtube.com/embed/${movie}`} 
                             frameborder="0"
                             width="560"
@@ -32,7 +25,7 @@ const TrailersPage = () => {
                     ))}
                 </div>
             ) : ( 
-                <p>No favorite Movies yet.</p>
+                <p>Any Movie Trailer You Watch Would Appear Here.</p>
             )}
 
         </div>
