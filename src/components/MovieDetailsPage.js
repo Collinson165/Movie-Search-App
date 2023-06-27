@@ -6,6 +6,18 @@ const MovieDetailsPage = () => {
     const { id } = useParams();
     const [movieDetails, setMovieDetails] = useState(null);
     const [isFavorite, setIsFavorite] = useState(false);
+    const [trailerId, setTrailerId] = useState('');
+
+    const handleWatchNow = async () => {
+        try {
+            const videoId = await MovieService.fetchTrailer(movieDetails.Title);
+            setTrailerId(videoId);
+            console.log('fetched youtube video', trailerId)
+            console.log(videoId)
+        } catch(error){
+            console.error('Failed to fetch video from youtube', error);
+        }
+    }
 
     const handleToggleFavorites = () => {
         const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
@@ -89,9 +101,10 @@ const MovieDetailsPage = () => {
                                 <p><span className="font-bold">Awards:</span>{movieDetails.Awards}</p>
                                 <p><span className="font-bold">Website:</span><a className='text-blue-500' href={movieDetails.Website}>{movieDetails.Website}</a></p>
                             </div>
+                            
 
                             <div className="mt-8">
-                                <button className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg inline-block">Watch Now</button>
+                                <button onClick={handleWatchNow} className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg inline-block">Watch Trailer</button>
                                 <button
                                  onClick={handleToggleFavorites} 
                                  className="bg-gray-800 hover:bg-gray-900 text-white px-6 py-3 rounded-lg inline-block ml-4">
@@ -99,9 +112,31 @@ const MovieDetailsPage = () => {
                                 </button>
                             </div>
                         </div>
+
+                        
+
                     </div>
+                    
                 </div>
+                {/* YOUTUBE VIDEO IFRAME HERE */}
+                
             </section>
+
+            <section className='flex justify-center'>
+            <div className='h-fit py-10'>
+                {trailerId && (
+                    <iframe
+                        title={movieDetails.Title}
+                        src={`https://www.youtube.com/embed/${trailerId}`} 
+                        frameborder="0"
+                        width="560"
+                        height="315"
+                        allowFullScreen
+                    />
+                )}
+            </div>
+            </section>
+
             <section className="bg-gradient-to-t from-gray-900 to-black py-12">
                 <div className="container mx-auto px-4">
                     <h2 className="text-2xl font-bold text-white">Ratings</h2>

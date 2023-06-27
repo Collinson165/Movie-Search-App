@@ -1,4 +1,7 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import MovieCard from "./MovieCard";
+
 
 const FavoritesPage = () => {
     const [favoriteMovies, setFavoriteMovies] = useState([]);
@@ -11,20 +14,27 @@ const FavoritesPage = () => {
     }, []);
 
     return (
-        <div className="h-screen">
-            <h1>Favorite Movies</h1>
-            {favoriteMovies.length > 0 ? (
-                <ul>
-                    {favoriteMovies.map((movie) => (
-                        <li key={movie.imdbID}>
-                            <h2>{movie.Title}</h2>
-                            <p>{movie.Year}</p>
-                        </li>
-                    ))}
-                </ul>
-            ) : ( 
-                <p>No favorite Movies yet.</p>
-            )}
+        <div className="px-6 bg-gray-800">
+            <section className="py-6">
+                <h1 className="text-white text-lg leading-5 text-center">Favorite Movies</h1>
+                {favoriteMovies.length > 0 ? (
+                    <div className="p-4 grid xl:grid-cols-6 lg:grid-cols-4 grid-cols-3 gap-4">
+                        {favoriteMovies.map((movie) => (
+                            <Link to={`/movies/${movie.imdbID}`}>
+                            <MovieCard
+                                key={movie.imdbID}
+                                title={movie.Title}
+                                image={movie.Poster}
+                                releaseDate={movie.Year}
+                                type={movie.Type}
+                            />
+                            </Link>
+                        ))}
+                    </div>
+                ) : ( 
+                    <p>No favorite Movies yet.</p>
+                )}
+            </section>
         </div>
     );
         

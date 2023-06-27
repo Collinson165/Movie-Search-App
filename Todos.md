@@ -1,0 +1,4 @@
+-Use Youtube API to pull movie trailers to the trailers route
+-Make watch now button in MovieDetailsPage functional
+-Use context API to manage state
+-Fix 'Your Search' bug on landing page
