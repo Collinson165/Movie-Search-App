@@ -1,3 +1,4 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/ae10f939-2efd-49b8-af65-dd8aa59a3bff/deploy-status)](https://app.netlify.com/sites/codebro-movies/deploys)
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
