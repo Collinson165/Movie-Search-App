@@ -63,7 +63,7 @@ const MovieDetailsPage = () => {
     
 
     if (!movieDetails) {
-        return <div>Loading...</div>
+        return <div className='h-screen bg-gray-900'>Loading...</div>
     };
 
     const sectionStyle = {
@@ -89,8 +89,8 @@ const MovieDetailsPage = () => {
                         
 
                         <div className="w-full md:w-2/3 md:pl-8">
-                            <h1 className="text-4xl font-bold text-white">{movieDetails.Title}</h1>
-                            <p className="text-gray-400 text-lg font-semibold">{movieDetails.Year}</p>
+                            <h1 className="text-4xl leading-4 font-bold text-white">{movieDetails.Title}</h1>
+                            <p className="text-gray-400 text-xl font-semibold">{movieDetails.Year}</p>
                             <p className="text-gray-400">{movieDetails.Genre}</p>
                             <p className="text-gray-400 text-lg leading-relaxed">{movieDetails.Plot}</p>
 

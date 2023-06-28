@@ -14,7 +14,7 @@ const TrailersPage = () => {
     }, []);
 
     return (
-        <div className="">
+        <div className="bg-gray-900 text-white min-h-screen">
             {favoriteMovies.length > 0 ? (
                 <div className="p-4 grid lg:grid-cols-2 grid-cols-1 gap-4">
                     {favoriteMovies.map((movie) => (

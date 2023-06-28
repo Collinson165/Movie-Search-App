@@ -14,7 +14,7 @@ const FavoritesPage = () => {
     }, []);
 
     return (
-        <div className="px-6 bg-gray-800">
+        <div className="px-6 bg-gray-900 text-white min-h-screen">
             <section className="py-6">
                 <h1 className="text-white text-lg leading-5 text-center">Favorite Movies</h1>
                 {favoriteMovies.length > 0 ? (
