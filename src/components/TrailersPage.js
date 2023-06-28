@@ -9,8 +9,8 @@ const TrailersPage = () => {
             setFavoriteMovies(JSON.parse(youtubeVideoId));
         }
         
-        console.log(youtubeVideoId);
-        console.log(favoriteMovies);
+        // console.log(youtubeVideoId);
+        // console.log(favoriteMovies);
     }, []);
 
     return (
