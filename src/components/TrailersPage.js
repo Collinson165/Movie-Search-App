@@ -4,9 +4,13 @@ const TrailersPage = () => {
     const [favoriteMovies, setFavoriteMovies] = useState([]);
 
     useEffect(() => {
-        const videoID = JSON.parse(localStorage.getItem('youtubeVideoId')) || [];
-        setFavoriteMovies(videoID);
-        console.log(videoID);
+        const youtubeVideoId = localStorage.getItem('youtubeVideoId');
+        if(youtubeVideoId){
+            setFavoriteMovies(JSON.parse(youtubeVideoId));
+        }
+        
+        console.log(youtubeVideoId);
+        console.log(favoriteMovies);
     }, []);
 
     return (

@@ -7,17 +7,19 @@ const MovieDetailsPage = () => {
     const [movieDetails, setMovieDetails] = useState(null);
     const [isFavorite, setIsFavorite] = useState(false);
     const [trailerId, setTrailerId] = useState('');
+    const youtubeVideoId = JSON.parse(localStorage.getItem('youtubeVideoId')) || [];
 
     const handleWatchNow = async () => {
-        const youtubeVideoId = JSON.parse(localStorage.getItem('youtubeVideoId')) || [];
+        
         try {
             const videoId = await MovieService.fetchTrailer(movieDetails.Title);
             setTrailerId(videoId);
-            if(!youtubeVideoId.includes(videoId)){
-                youtubeVideoId.push(videoId);
-            }
+            
+            youtubeVideoId.push(videoId);
+            
             console.log('fetched youtube video', trailerId)
             console.log(videoId)
+            console.log(youtubeVideoId);
         } catch(error){
             console.error('Failed to fetch video from youtube', error);
         }
@@ -73,7 +75,7 @@ const MovieDetailsPage = () => {
 
     return (
 
-        <div className="bg-black">
+        <div className="">
 
             <section className='bg-gradient-to-t from-black to-gray-900 py-12' style={{ sectionStyle }}>
                 <div className="container mx-auto px-4">
@@ -81,7 +83,7 @@ const MovieDetailsPage = () => {
                         <div className="flex justify-center">
                             <div className="w-64 h-auto">
                                 <img src={movieDetails.Poster} alt={movieDetails.Title} className="w-full h-full rounded-lg shadow-lg" />
-                                <div className='absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black to-transparent'></div>
+                                {/* <div className='absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black to-transparent'></div> */}
                             </div>
                         </div>
                         
@@ -108,10 +110,10 @@ const MovieDetailsPage = () => {
                             
 
                             <div className="mt-8">
-                                <button onClick={handleWatchNow} className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg inline-block">Watch Trailer</button>
+                                <button onClick={handleWatchNow} className="bg-red-600 hover:bg-red-700 text-white md:px-4 px-6 py-3 rounded-lg inline-block">Watch Trailer</button>
                                 <button
                                  onClick={handleToggleFavorites} 
-                                 className="bg-gray-800 hover:bg-gray-900 text-white px-6 py-3 rounded-lg inline-block ml-4">
+                                 className="bg-gray-800 hover:bg-gray-900 text-white px-4 md:px-6 py-3 rounded-lg inline-block ml-2 md:ml-4">
                                     {isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
                                 </button>
                             </div>
@@ -126,34 +128,31 @@ const MovieDetailsPage = () => {
                 
             </section>
 
-            <section className='flex justify-center'>
-            <div className='h-fit py-10'>
-                {trailerId && (
+            {trailerId && (<section className='bg-black'>
+            <div className='py-5 flex justify-center'>
                     <iframe
                         title={movieDetails.Title}
                         src={`https://www.youtube.com/embed/${trailerId}`} 
                         frameborder="0"
-                        width="560"
-                        height="315"
+                        className='w-4/5 h-64 border border-gray-300'
                         allowFullScreen
                     />
-                )}
             </div>
             </section>
+            )}
 
             <section className="bg-gradient-to-t from-gray-900 to-black py-12">
-                <div className="container mx-auto px-4">
+                <div className="container mx-auto px-2">
                     <h2 className="text-2xl font-bold text-white">Ratings</h2>
-                    <div className="flex mt-8">
+                    <div className="flex mt-4">
+                    <div className="px-2 grid grid-cols-1 md:grid-cols-3 gap-2">
                     {movieDetails.Ratings && movieDetails.Ratings.map((rating) => (
-                        
-                        <div className="px-2 w-1/2 md:w-1/3 lg:w-1/4">
-                            <div className="bg-gray-800 p-4 rounded-lg">
+                            <div className="bg-gray-900 p-3 rounded-lg">
                                 <h3 className="text-white">{rating.Source}</h3>
                                 <p className="text-4xl text-red-500 font-bold">{rating.Value}</p>
-                            </div>
-                        </div>
+                            </div>  
                     ))}
+                    </div>
                     </div>
                 </div>
             </section>
