@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 const LandingPage = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [searchResults, setSearchResults] = useState([]);
+    const [prevSearchQuery, setPrevSearchQuery] = useState('');
 
     const handleSearchInputChange = (event) => {
         setSearchQuery(event.target.value);
@@ -18,6 +19,7 @@ const LandingPage = () => {
         try {
             const searchResults = await MovieSearch.searchMovies(searchQuery);
             setSearchResults(searchResults);
+            setPrevSearchQuery(searchQuery)
         } catch (error) {
             console.error('Error occured during search:', error);
         }
@@ -276,7 +278,7 @@ const LandingPage = () => {
 
             {searchResults && (
                 <div className="flex justify-center items-center flex-col">
-                    <h2 className="text-3xl font-bold mb-8">Your Search: '{searchQuery}' </h2>
+                    <h2 className="text-3xl font-bold mb-8">Your Search: '{prevSearchQuery}' </h2>
                     <div className="p-4 grid xl:grid-cols-6 lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-2 md:gap-4">
                     {searchResults && searchResults.map((movie) => (
                         <div className="hover:scale-105 transition ease-in">

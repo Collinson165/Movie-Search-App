@@ -18,7 +18,7 @@ const FavoritesPage = () => {
             <section className="py-6">
                 <h1 className="text-white text-lg leading-5 text-center">Favorite Movies</h1>
                 {favoriteMovies.length > 0 ? (
-                    <div className="p-4 grid xl:grid-cols-6 lg:grid-cols-4 grid-cols-3 gap-4">
+                    <div className="p-4 grid xl:grid-cols-6 lg:grid-cols-4 grid-cols-2 gap-4">
                         {favoriteMovies.map((movie) => (
                             <Link to={`/movies/${movie.imdbID}`}>
                             <MovieCard

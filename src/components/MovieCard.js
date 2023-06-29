@@ -8,14 +8,14 @@ const MovieCard = ({ image, title, releaseDate, type }) => {
         //     <p className="text-white rounded-lg bg-gray-800 w-1/2 p-1 mx-auto">{type}</p> 
         // </div>
 
-        <div className="max-w-sm rounded overflow-hidden shadow-lg">
+        <div className="max-w-sm rounded overflow-hidden shadow-lg relative">
             <img src={image} alt={title} className="w-full" />
             <div className="px-4 py-2">
                 <div className="font-bold text-sm mb:text-xl mb-1">{title}</div>
                 <p className="text-gray-700 text-base">{releaseDate}</p>
             </div>
             <div className="px-4 pt-2 pb-1">
-                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+                <button className="absolute bg-opacity-40 top-0 right-0 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">
                     {type}
                 </button>
             </div>

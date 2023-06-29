@@ -29,7 +29,7 @@ const TrailersPage = () => {
                     ))}
                 </div>
             ) : ( 
-                <p>Any Movie Trailer You Watch Would Appear Here.</p>
+                <p className="text-white flex justify-center items-center h-screen">Any Movie Trailer You Watch Would Appear Here.</p>
             )}
 
         </div>

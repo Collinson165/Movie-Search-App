@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import LoadingIcon from './LoadingIcon';
 import MovieService from './MovieService';
 
 const MovieDetailsPage = () => {
@@ -63,7 +64,10 @@ const MovieDetailsPage = () => {
     
 
     if (!movieDetails) {
-        return <div className='h-screen bg-gray-900'>Loading...</div>
+        return (
+            // <div className='h-screen bg-gray-900'>Loading...</div>
+            <LoadingIcon />
+        ) 
     };
 
     const sectionStyle = {
@@ -89,7 +93,7 @@ const MovieDetailsPage = () => {
                         
 
                         <div className="w-full md:w-2/3 md:pl-8">
-                            <h1 className="text-4xl leading-4 font-bold text-white">{movieDetails.Title}</h1>
+                            <h1 className="text-4xl font-bold text-white">{movieDetails.Title}</h1>
                             <p className="text-gray-400 text-xl font-semibold">{movieDetails.Year}</p>
                             <p className="text-gray-400">{movieDetails.Genre}</p>
                             <p className="text-gray-400 text-lg leading-relaxed">{movieDetails.Plot}</p>
