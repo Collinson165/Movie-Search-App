@@ -5,7 +5,7 @@ const Footer = () => {
                 <div className="flex flex-wrap items-center justify-between">
                     <div className="w-full sm:w-auto">
                         <p className="text-sm text-gray-300 text-center md:text-start">
-                            &copy; {new Date().getFullYear()} Movie Search App. All rights reserved.
+                            &copy; {new Date().getFullYear()} Movie Search App. All rights reserved. D+C with ❤
                         </p>
                     </div>
                     <div className="w-full sm:w-auto mt-4 sm:mt-0">
