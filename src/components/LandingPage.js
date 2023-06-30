@@ -278,8 +278,8 @@ const LandingPage = () => {
 
             {searchResults && (
                 <div className="flex justify-center items-center flex-col">
-                    <h2 className="text-3xl font-bold mb-8">Your Search: '{prevSearchQuery}' </h2>
-                    <div className="p-4 grid xl:grid-cols-6 lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-2 md:gap-4">
+                    {prevSearchQuery && <h2 className="text-3xl font-bold mb-8">Your Search: '{prevSearchQuery}' </h2>}
+                    <div className="p-4 grid xl:grid-cols-6 lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-2 md:gap-4">
                     {searchResults && searchResults.map((movie) => (
                         <div className="hover:scale-105 transition ease-in">
                             <Link to={`/movies/${movie.imdbID}`}>
@@ -301,7 +301,7 @@ const LandingPage = () => {
             {justiceLeague && (
                 <div className="flex justify-center items-center flex-col">
                     <h2 className="text-3xl font-bold mb-8">Justice League</h2>
-                    <div className="p-4 grid xl:grid-cols-6 lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-2 md:gap-4">
+                    <div className="p-4 grid xl:grid-cols-6 lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-2 md:gap-4">
                     {justiceLeague && justiceLeague.map((movie) => (
                         <div className="hover:scale-105 transition ease-in">
                             <Link to={`/movies/${movie.imdbID}`}>
@@ -323,7 +323,7 @@ const LandingPage = () => {
             {avengers && (
                 <div className="flex justify-center items-center flex-col">
                     <h2 className="text-3xl font-bold mb-8">Avengers</h2>
-                    <div className="p-4 grid xl:grid-cols-6 lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-2 md:gap-4">
+                    <div className="p-4 grid xl:grid-cols-6 lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-2 md:gap-4">
                     {avengers && avengers.map((movie) => (
                         <div className="hover:scale-105 transition ease-in">
                             <Link to={`/movies/${movie.imdbID}`}>
@@ -345,7 +345,7 @@ const LandingPage = () => {
             {starWars && (
                 <div className="flex justify-center items-center flex-col">
                     <h2 className="text-3xl font-bold mb-8">Star Wars</h2>
-                    <div className="p-4 grid xl:grid-cols-6 lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-2 md:gap-4">
+                    <div className="p-4 grid xl:grid-cols-6 lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-2 md:gap-4">
                     {starWars && starWars.map((movie) => (
                         <div className="hover:scale-105 transition ease-in">
                             <Link to={`/movies/${movie.imdbID}`}>

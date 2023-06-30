@@ -8,15 +8,21 @@ const MovieDetailsPage = () => {
     const [movieDetails, setMovieDetails] = useState(null);
     const [isFavorite, setIsFavorite] = useState(false);
     const [trailerId, setTrailerId] = useState('');
-    const youtubeVideoId = JSON.parse(localStorage.getItem('youtubeVideoId')) || [];
+    
 
     const handleWatchNow = async () => {
+        const youtubeVideoId = JSON.parse(localStorage.getItem('youtubeVideoId')) || [];
+        // const index = youtubeVideoId.findIndex((id) => id === id);
         
         try {
             const videoId = await MovieService.fetchTrailer(movieDetails.Title);
             setTrailerId(videoId);
+            if(youtubeVideoId.findIndex((id) => id === videoId) < 0){
+                console.log('saving video ID')
+                youtubeVideoId.push(videoId);
+            }
             
-            youtubeVideoId.push(videoId);
+            localStorage.setItem('youtubeVideoId', JSON.stringify(youtubeVideoId));
             
             console.log('fetched youtube video', trailerId)
             console.log(videoId)
